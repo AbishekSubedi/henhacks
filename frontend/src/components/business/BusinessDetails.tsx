@@ -13,10 +13,7 @@ import {
   Box,
   Divider,
 } from '@mui/material';
-import {
-  ArrowBack as ArrowBackIcon,
-  Lightbulb as LightbulbIcon,
-} from '@mui/icons-material';
+import { ArrowBack as ArrowBackIcon, Lightbulb as LightbulbIcon } from '@mui/icons-material';
 
 interface Business {
   id: string;
@@ -52,16 +49,13 @@ const BusinessDetails = () => {
 
     setGeneratingInsights(true);
     try {
-      const response = await axios.post(
-        `http://localhost:5001/api/business/${id}/insights`,
-        {
-          businessData: {
-            name: business.name,
-            description: business.description,
-            // Add any additional business data here
-          },
-        }
-      );
+      const response = await axios.post(`http://localhost:5001/api/business/${id}/insights`, {
+        businessData: {
+          name: business.name,
+          description: business.description,
+          // Add any additional business data here
+        },
+      });
       setInsights(response.data.insights);
     } catch (error) {
       console.error('Error generating insights:', error);
@@ -97,11 +91,7 @@ const BusinessDetails = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Button
-        startIcon={<ArrowBackIcon />}
-        onClick={() => navigate('/businesses')}
-        sx={{ mb: 3 }}
-      >
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/businesses')} sx={{ mb: 3 }}>
         Back to Businesses
       </Button>
 
@@ -126,7 +116,7 @@ const BusinessDetails = () => {
                 <LightbulbIcon sx={{ mr: 1, color: 'primary.main' }} />
                 <Typography variant="h5">AI Business Insights</Typography>
               </Box>
-              
+
               {!insights && (
                 <Button
                   variant="contained"
@@ -176,4 +166,4 @@ const BusinessDetails = () => {
   );
 };
 
-export default BusinessDetails; 
+export default BusinessDetails;

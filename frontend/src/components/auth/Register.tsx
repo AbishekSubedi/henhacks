@@ -2,15 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import axios from 'axios';
-import {
-  Container,
-  Paper,
-  TextField,
-  Button,
-  Typography,
-  Box,
-  Link,
-} from '@mui/material';
+import { Container, Paper, TextField, Button, Typography, Box, Link } from '@mui/material';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +25,7 @@ const Register = () => {
       await axios.post('http://localhost:5001/api/auth/register', {
         uid: user.uid,
         email: user.email,
-        businessName
+        businessName,
       });
 
       navigate('/dashboard');
@@ -60,7 +52,7 @@ const Register = () => {
               label="Email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               margin="normal"
               required
             />
@@ -69,7 +61,7 @@ const Register = () => {
               label="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               margin="normal"
               required
             />
@@ -77,7 +69,7 @@ const Register = () => {
               fullWidth
               label="Business Name"
               value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              onChange={e => setBusinessName(e.target.value)}
               margin="normal"
               required
             />
@@ -103,4 +95,4 @@ const Register = () => {
   );
 };
 
-export default Register; 
+export default Register;

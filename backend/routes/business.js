@@ -13,21 +13,21 @@ const businessesRef = db.ref('businesses');
 router.post('/', async (req, res) => {
   try {
     const { name, description, userId } = req.body;
-    
+
     const newBusinessRef = businessesRef.push();
     await newBusinessRef.set({
       name,
       description,
       userId,
       createdAt: admin.database.ServerValue.TIMESTAMP,
-      updatedAt: admin.database.ServerValue.TIMESTAMP
+      updatedAt: admin.database.ServerValue.TIMESTAMP,
     });
 
     res.status(201).json({
       id: newBusinessRef.key,
       name,
       description,
-      userId
+      userId,
     });
   } catch (error) {
     res.status(500).json({ message: 'Error creating business', error: error.message });
@@ -41,12 +41,12 @@ router.get('/user/:userId', async (req, res) => {
       .orderByChild('userId')
       .equalTo(req.params.userId)
       .once('value');
-    
+
     const businesses = [];
     snapshot.forEach(childSnapshot => {
       businesses.push({
         id: childSnapshot.key,
-        ...childSnapshot.val()
+        ...childSnapshot.val(),
       });
     });
 
@@ -68,7 +68,7 @@ router.get('/:id', async (req, res) => {
 
     res.json({
       id: req.params.id,
-      ...business
+      ...business,
     });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching business', error: error.message });
@@ -79,17 +79,17 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { name, description } = req.body;
-    
+
     await businessesRef.child(req.params.id).update({
       name,
       description,
-      updatedAt: admin.database.ServerValue.TIMESTAMP
+      updatedAt: admin.database.ServerValue.TIMESTAMP,
     });
 
     res.json({
       id: req.params.id,
       name,
-      description
+      description,
     });
   } catch (error) {
     res.status(500).json({ message: 'Error updating business', error: error.message });
@@ -110,9 +110,9 @@ router.delete('/:id', async (req, res) => {
 router.post('/:id/insights', async (req, res) => {
   try {
     const { businessData } = req.body;
-    
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    
+
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+
     const prompt = `Analyze this business data and provide strategic insights and recommendations:
       ${JSON.stringify(businessData, null, 2)}
       
@@ -132,4 +132,4 @@ router.post('/:id/insights', async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;

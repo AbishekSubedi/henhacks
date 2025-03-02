@@ -18,11 +18,7 @@ import {
   CardActions,
   IconButton,
 } from '@mui/material';
-import {
-  Add as AddIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-} from '@mui/icons-material';
+import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 
 interface Business {
   id: string;
@@ -37,7 +33,7 @@ const BusinessList = () => {
   const [businessName, setBusinessName] = useState('');
   const [businessDescription, setBusinessDescription] = useState('');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
-  
+
   const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
@@ -48,9 +44,7 @@ const BusinessList = () => {
 
   const fetchBusinesses = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5001/api/business/user/${user?.uid}`
-      );
+      const response = await axios.get(`http://localhost:5001/api/business/user/${user?.uid}`);
       setBusinesses(response.data.businesses);
     } catch (error) {
       console.error('Error fetching businesses:', error);
@@ -95,7 +89,7 @@ const BusinessList = () => {
           userId: user?.uid,
         });
       }
-      
+
       handleCloseDialog();
       fetchBusinesses();
     } catch (error) {
@@ -120,21 +114,19 @@ const BusinessList = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Paper sx={{ p: 3, mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Paper
+        sx={{ p: 3, mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
         <Typography variant="h4" component="h1">
           Manage Businesses
         </Typography>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => handleOpenDialog()}
-        >
+        <Button variant="contained" startIcon={<AddIcon />} onClick={() => handleOpenDialog()}>
           Add Business
         </Button>
       </Paper>
 
       <Grid container spacing={3}>
-        {businesses.map((business) => (
+        {businesses.map(business => (
           <Grid item xs={12} md={4} key={business.id}>
             <Card>
               <CardContent>
@@ -146,10 +138,7 @@ const BusinessList = () => {
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Button
-                  size="small"
-                  onClick={() => navigate(`/businesses/${business.id}`)}
-                >
+                <Button size="small" onClick={() => navigate(`/businesses/${business.id}`)}>
                   View Details
                 </Button>
                 <div>
@@ -160,11 +149,7 @@ const BusinessList = () => {
                   >
                     <EditIcon />
                   </IconButton>
-                  <IconButton
-                    size="small"
-                    onClick={() => handleDelete(business.id)}
-                    color="error"
-                  >
+                  <IconButton size="small" onClick={() => handleDelete(business.id)} color="error">
                     <DeleteIcon />
                   </IconButton>
                 </div>
@@ -175,15 +160,13 @@ const BusinessList = () => {
       </Grid>
 
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
-        <DialogTitle>
-          {editingBusiness ? 'Edit Business' : 'Add New Business'}
-        </DialogTitle>
+        <DialogTitle>{editingBusiness ? 'Edit Business' : 'Add New Business'}</DialogTitle>
         <DialogContent>
           <TextField
             fullWidth
             label="Business Name"
             value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
+            onChange={e => setBusinessName(e.target.value)}
             margin="normal"
             required
           />
@@ -191,7 +174,7 @@ const BusinessList = () => {
             fullWidth
             label="Description"
             value={businessDescription}
-            onChange={(e) => setBusinessDescription(e.target.value)}
+            onChange={e => setBusinessDescription(e.target.value)}
             margin="normal"
             multiline
             rows={4}
@@ -213,4 +196,4 @@ const BusinessList = () => {
   );
 };
 
-export default BusinessList; 
+export default BusinessList;

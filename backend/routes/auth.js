@@ -14,15 +14,15 @@ router.post('/register', async (req, res) => {
     await usersRef.child(uid).set({
       email,
       businessName,
-      createdAt: admin.database.ServerValue.TIMESTAMP
+      createdAt: admin.database.ServerValue.TIMESTAMP,
     });
 
     res.status(201).json({
       user: {
         uid,
         email,
-        businessName
-      }
+        businessName,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: 'Error creating user', error: error.message });
@@ -42,12 +42,12 @@ router.get('/user/:uid', async (req, res) => {
     res.json({
       user: {
         uid: req.params.uid,
-        ...userData
-      }
+        ...userData,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching user data', error: error.message });
   }
 });
 
-module.exports = router; 
+module.exports = router;

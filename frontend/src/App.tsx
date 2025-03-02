@@ -31,7 +31,7 @@ function App() {
   const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
       setLoading(false);
     });
@@ -50,34 +50,19 @@ function App() {
         {user && <Navbar user={user} />}
         <Routes>
           {/* Public routes */}
-          <Route
-            path="/login"
-            element={!user ? <Login /> : <Navigate to="/dashboard" />}
-          />
-          <Route
-            path="/register"
-            element={!user ? <Register /> : <Navigate to="/dashboard" />}
-          />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+          <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
 
           {/* Protected routes */}
-          <Route
-            path="/dashboard"
-            element={user ? <Dashboard /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/businesses"
-            element={user ? <BusinessList /> : <Navigate to="/login" />}
-          />
+          <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+          <Route path="/businesses" element={user ? <BusinessList /> : <Navigate to="/login" />} />
           <Route
             path="/businesses/:id"
             element={user ? <BusinessDetails /> : <Navigate to="/login" />}
           />
 
           {/* Default redirect */}
-          <Route
-            path="/"
-            element={<Navigate to={user ? "/dashboard" : "/login"} />}
-          />
+          <Route path="/" element={<Navigate to={user ? '/dashboard' : '/login'} />} />
         </Routes>
       </Router>
     </ThemeProvider>

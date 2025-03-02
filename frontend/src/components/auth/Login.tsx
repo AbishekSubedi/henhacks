@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import {
-  Container,
-  Paper,
-  TextField,
-  Button,
-  Typography,
-  Box,
-  Link,
-} from '@mui/material';
+import { Container, Paper, TextField, Button, Typography, Box, Link } from '@mui/material';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -48,7 +40,7 @@ const Login = () => {
               label="Email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               margin="normal"
               required
             />
@@ -57,7 +49,7 @@ const Login = () => {
               label="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               margin="normal"
               required
             />
@@ -83,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;

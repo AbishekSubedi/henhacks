@@ -52,11 +52,7 @@ const Navbar = ({ user }: NavbarProps) => {
         </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button
-            color="inherit"
-            startIcon={<Business />}
-            onClick={() => navigate('/businesses')}
-          >
+          <Button color="inherit" startIcon={<Business />} onClick={() => navigate('/businesses')}>
             Businesses
           </Button>
 
@@ -94,4 +90,4 @@ const Navbar = ({ user }: NavbarProps) => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

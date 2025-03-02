@@ -31,9 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5001/api/business/user/${user?.uid}`
-        );
+        const response = await axios.get(`http://localhost:5001/api/business/user/${user?.uid}`);
         setBusinesses(response.data.businesses);
       } catch (error) {
         console.error('Error fetching businesses:', error);
@@ -60,15 +58,13 @@ const Dashboard = () => {
       <Grid container spacing={3}>
         {/* Welcome Section */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Paper
+            sx={{ p: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+          >
             <Typography variant="h4" component="h1">
               Welcome back!
             </Typography>
-            <Button
-              variant="contained"
-              startIcon={<AddIcon />}
-              onClick={handleCreateBusiness}
-            >
+            <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreateBusiness}>
               Add Business
             </Button>
           </Paper>
@@ -100,7 +96,7 @@ const Dashboard = () => {
                 </Paper>
               </Grid>
             ) : (
-              businesses.map((business) => (
+              businesses.map(business => (
                 <Grid item xs={12} md={4} key={business.id}>
                   <Card>
                     <CardContent>
@@ -112,10 +108,7 @@ const Dashboard = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button
-                        size="small"
-                        onClick={() => navigate(`/businesses/${business.id}`)}
-                      >
+                      <Button size="small" onClick={() => navigate(`/businesses/${business.id}`)}>
                         View Details
                       </Button>
                     </CardActions>
@@ -130,4 +123,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard; 
+export default Dashboard;
