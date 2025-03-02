@@ -1,21 +1,21 @@
 # Business AI Platform
 
-A modern web application that helps small businesses leverage the power of AI for business performance, social media marketing, and management.
+A comprehensive solution for small businesses to leverage AI for insights and growth.
 
 ## Features
 
-- User authentication (login/register)
-- Business profile creation
-- Multi-step business details form
-- AI-powered business analysis using Google's Gemini AI
-- Dashboard with business insights
-- Modern, responsive UI using Material-UI
+- User Authentication with Firebase
+- Business Management (Create, Read, Update, Delete)
+- AI-powered Business Insights using Gemini Pro
+- Modern UI with Material-UI
+- Real-time Data with Firebase Realtime Database
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- MongoDB (local installation or MongoDB Atlas account)
-- Google Cloud Platform account for Gemini AI API
+- Node.js (v18 or higher)
+- npm or yarn
+- Firebase Account
+- Google Cloud Account (for Gemini Pro API)
 
 ## Setup
 
@@ -27,83 +27,62 @@ cd business-ai-platform
 
 2. Install dependencies:
 ```bash
-# Install backend dependencies
-npm install
-
-# Install frontend dependencies
-cd client
-npm install
+npm run install-deps
 ```
 
-3. Create a `.env` file in the root directory with the following variables:
-```
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-GEMINI_API_KEY=your_gemini_api_key
-PORT=5000
-```
+3. Configure environment variables:
 
-4. Start the development server:
+Frontend (.env):
+- Copy `frontend/.env.example` to `frontend/.env`
+- Fill in your Firebase configuration values
+
+Backend (.env):
+- Copy `backend/.env.example` to `backend/.env`
+- Set your PORT and GEMINI_API_KEY
+
+4. Set up Firebase:
+- Create a new Firebase project
+- Enable Authentication and Realtime Database
+- Download your service account key and save it as `backend/config/firebase-service-account.json`
+
+## Development
+
+Start both frontend and backend in development mode:
 ```bash
-# Start both frontend and backend
 npm run dev
-
-# Start backend only
-npm run server
-
-# Start frontend only
-npm run client
 ```
 
-The application will be available at:
-- Frontend: http://localhost:5173
-- Backend: http://localhost:5000
+The frontend will be available at `http://localhost:5174` and the backend at `http://localhost:5001`.
 
 ## Project Structure
 
 ```
 business-ai-platform/
-├── client/                 # Frontend React application
+├── frontend/                 # React frontend application
 │   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── context/      # Context providers
-│   │   └── App.tsx       # Main application component
-├── models/                # MongoDB models
-├── routes/               # Express routes
-├── server.js            # Express server setup
-└── package.json         # Project dependencies
+│   │   ├── components/      # React components
+│   │   ├── config/         # Firebase configuration
+│   │   └── ...
+│   └── .env                # Frontend environment variables
+├── backend/                 # Express backend server
+│   ├── routes/             # API routes
+│   ├── config/             # Backend configuration
+│   └── .env               # Backend environment variables
+└── package.json           # Root package.json
 ```
 
-## API Endpoints
+## Security
 
-### Authentication
-- POST /api/auth/register - Register a new user
-- POST /api/auth/login - Login user
-
-### Business
-- POST /api/business/update-details - Update business details
-- GET /api/business/details - Get business details
-
-## Technologies Used
-
-- Frontend:
-  - React with TypeScript
-  - Material-UI
-  - Formik & Yup
-  - Axios
-  - React Router
-
-- Backend:
-  - Node.js
-  - Express
-  - MongoDB with Mongoose
-  - JWT Authentication
-  - Google's Gemini AI
+- All sensitive information (API keys, tokens) should be stored in environment variables
+- The `.env` files and `firebase-service-account.json` are git-ignored for security
+- Make sure to never commit sensitive information to the repository
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request 
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
+
+## License
+
+MIT 

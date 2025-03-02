@@ -1,5 +1,3 @@
-// filepath: /Users/abishek/Desktop/henhacks/.gitignore
-
 # Dependencies
 node_modules/
 frontend/node_modules/
