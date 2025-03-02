@@ -1,28 +1,17 @@
 {
   "name": "business-ai-platform",
-  "version": "1.0.0",
-  "description": "A platform to help small businesses leverage AI",
-  "main": "server.js",
+  "version": "0.1.0",
+  "description": "Business AI Platform - A comprehensive solution for small businesses",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "cd client && npm run dev",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "install-deps": "cd frontend && npm install --legacy-peer-deps && cd ../backend && npm install",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@google/generative-ai": "^0.2.0",
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.18.3",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.0"
-  },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.1.0"
+    "concurrently": "^8.2.2"
   }
-}
+} 
